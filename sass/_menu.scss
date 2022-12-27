@@ -1,0 +1,98 @@
+.menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    // gap: 0 40px;
+    &-item + .menu-item {
+        margin-left: 40px;
+    }
+
+    &-link {
+        color: inherit;
+    }
+
+    &-toggle {
+        display: none;
+        width: 30px;
+        height: 30px;
+        span {
+            pointer-events: none;
+            width: 100%;
+            height: 5px;
+            background-color: $heading-color;
+        }
+    }
+}
+
+@media (hover: hover) {
+    .menu-link {
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: auto;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background-color: $primary-color;
+            transition: all 0.2s linear;
+        }
+        &:hover {
+            color: $primary-color;
+            &:after {
+                width: 100%;
+                left: 0;
+                right: auto;
+            }
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .menu {
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 300px;
+        background-color: #fff;
+        z-index: 1;
+        border-left: 1px solid #f8f8f8;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px 0;
+        padding-top: 60px;
+        transform: translateX(100%);
+        will-change: transform;
+        transition: all linear 0.2s;
+        &.is-show {
+            transform: translateX(0);
+        }
+    }
+    .menu-item + .menu-item{
+        margin: 0;
+    }
+    .menu-link {
+        width: 100%;
+        padding: 20px;
+    }
+    .menu-toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .menu-item-auth {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .menu-item-auth {
+        display: none;
+    }
+}
